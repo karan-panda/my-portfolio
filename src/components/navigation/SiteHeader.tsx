@@ -86,9 +86,10 @@ export function SiteHeader() {
         )}
       />
       <nav aria-label="Primary" className="shell flex h-[var(--nav-h)] items-center justify-between">
-        <Link href="/" className="flex items-center gap-3" onClick={close} aria-label={`${profile.name} — home`}>
+        <Link href="/" className="flex items-center gap-3" onClick={close}>
           <Monogram className="text-2xl" />
-          <span className="text-label hidden text-text-dim sm:inline">{profile.name}</span>
+          <span className="text-label sr-only text-text-dim sm:not-sr-only">{profile.name}</span>
+          <span className="sr-only">, home</span>
         </Link>
 
         <ul className="hidden items-center gap-8 md:flex">

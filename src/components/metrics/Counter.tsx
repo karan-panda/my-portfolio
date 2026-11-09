@@ -38,7 +38,9 @@ export function Counter({ metric }: { metric: Metric }) {
   if (to === undefined) return <>{metric.value}</>;
 
   return (
-    <span aria-label={metric.value}>
+    <span>
+      {/* Screen readers get the final value once; the animated digits are hidden from them. */}
+      <span className="sr-only">{metric.value}</span>
       <span aria-hidden="true">
         {hasRange && (
           <span className="text-muted">

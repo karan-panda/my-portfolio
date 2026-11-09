@@ -22,14 +22,14 @@ export function HeroMotion({ children, className }: { children: ReactNode; class
     () => {
       const items = gsap.utils.toArray<HTMLElement>("[data-reveal]", ref.current);
       if (prefersReducedMotion()) {
-        gsap.set(items, { autoAlpha: 1 });
+        gsap.set(items, { opacity: 1 });
         return;
       }
       const masked = items.filter((el) => el.parentElement?.classList.contains("mask-line"));
       const plain = items.filter((el) => !masked.includes(el));
-      if (masked.length) gsap.set(masked, { autoAlpha: 1, yPercent: 110 });
-      if (plain.length) gsap.set(plain, { autoAlpha: 0, y: 20 });
-      gsap.set("[data-schematic-part]", { autoAlpha: 0, scale: 0.92, transformOrigin: "50% 50%" });
+      if (masked.length) gsap.set(masked, { opacity: 1, yPercent: 110 });
+      if (plain.length) gsap.set(plain, { opacity: 0, y: 20 });
+      gsap.set("[data-schematic-part]", { opacity: 0, scale: 0.92, transformOrigin: "50% 50%" });
     },
     { scope: ref },
   );
@@ -43,8 +43,8 @@ export function HeroMotion({ children, className }: { children: ReactNode; class
 
       const tl = gsap.timeline({ defaults: { ease: ease.out } });
       tl.to(masked, { yPercent: 0, duration: duration.slow, stagger: stagger.lines })
-        .to("[data-schematic-part]", { autoAlpha: 1, scale: 1, duration: 1.6, stagger: 0.08 }, 0.1)
-        .to(plain, { autoAlpha: 1, y: 0, duration: duration.base, stagger: stagger.items }, 0.45);
+        .to("[data-schematic-part]", { opacity: 1, scale: 1, duration: 1.6, stagger: 0.08 }, 0.1)
+        .to(plain, { opacity: 1, y: 0, duration: duration.base, stagger: stagger.items }, 0.45);
 
       // Scroll parallax as the hero exits.
       gsap.to("[data-parallax='headline']", {

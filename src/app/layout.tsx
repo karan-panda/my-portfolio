@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { ViewTransition } from "react";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { profile } from "@/data/profile";
+import { siteDescription, siteUrl } from "@/lib/seo";
 import { SiteHeader } from "@/components/navigation/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Intro } from "@/components/motion/Intro";
@@ -15,12 +16,43 @@ const sans = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swa
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono", display: "swap", weight: ["400", "500"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(profile.siteUrl),
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${profile.name} — Software Engineer`,
     template: `%s — ${profile.name}`,
   },
-  description: `${profile.summary} ${profile.positioning}`,
+  description: siteDescription,
+  applicationName: `${profile.name} — Portfolio`,
+  authors: [{ name: profile.name, url: profile.links.linkedin }],
+  creator: profile.name,
+  keywords: [
+    "Karan Panda",
+    "Software Engineer",
+    "Backend Engineer",
+    "Full-Stack Engineer",
+    ".NET",
+    "FastAPI",
+    "Next.js",
+    "MCP",
+    "RAG",
+    "GenAI",
+    "Mumbai",
+  ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "/",
+    siteName: `${profile.name} — Portfolio`,
+    title: `${profile.name} — Software Engineer`,
+    description: siteDescription,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${profile.name} — Software Engineer`,
+    description: siteDescription,
+  },
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {

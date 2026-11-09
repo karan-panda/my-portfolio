@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { getProject, projects } from "@/data/projects";
 import { profile } from "@/data/profile";
@@ -25,30 +24,19 @@ export async function generateMetadata({ params }: PageProps<"/work/[slug]">): P
   };
 }
 
-type Params = PageProps<"/work/[slug]">["params"];
+/**
+ * Every known slug is fully prerendered and case-study links are prefetched,
+ * so navigations are effectively instant in production. Reading `params`
+ * directly (no Suspense) keeps a fallback out of the static HTML, which
+ * would otherwise be swapped for the content and shift the layout.
+ */
+export const instant = false;
 
-async function CaseStudyContent({ params }: { params: Params }) {
+export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]">) {
   const { slug } = await params;
   const index = projects.findIndex((p) => p.slug === slug);
   if (index === -1) notFound();
   const project = projects[index]!;
   const next = projects[(index + 1) % projects.length]!;
   return <CaseStudy project={project} next={next} total={projects.length} />;
-}
-
-/** Shown only for slugs that were not prerendered, while they resolve. */
-function CaseStudyFallback() {
-  return (
-    <div className="shell min-h-[80svh] pt-[calc(var(--nav-h)+2rem)]" aria-busy="true">
-      <p className="text-label text-muted">Loading case study…</p>
-    </div>
-  );
-}
-
-export default function CaseStudyPage({ params }: PageProps<"/work/[slug]">) {
-  return (
-    <Suspense fallback={<CaseStudyFallback />}>
-      <CaseStudyContent params={params} />
-    </Suspense>
-  );
 }

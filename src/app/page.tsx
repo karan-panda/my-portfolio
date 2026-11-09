@@ -6,10 +6,12 @@ import { Experience } from "@/components/experience/Experience";
 import { Impact } from "@/components/metrics/Impact";
 import { Recognition } from "@/components/recognition/Recognition";
 import { Contact } from "@/components/contact/Contact";
+import { jsonLdString, personJsonLd } from "@/lib/seo";
 
 export default function Home() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdString(personJsonLd()) }} />
       <Hero />
       <About />
       <SelectedWork />

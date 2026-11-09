@@ -8,7 +8,6 @@ import { LocalTime } from "./LocalTime";
 import { FocusTicker } from "./FocusTicker";
 
 export function Hero() {
-  const [first, second] = profile.headline;
   return (
     <HeroMotion className="relative flex min-h-[100svh] flex-col overflow-x-clip pt-[calc(var(--nav-h)+1.25rem)]">
       {/* Meta strip */}
@@ -63,14 +62,12 @@ export function Hero() {
               </span>
             </span>
           </h1>
-          <p className="sr-only">
-            {first} {second}
-          </p>
         </div>
 
         {/* Summary + CTAs */}
         <div className="relative col-span-12 md:col-span-7 lg:col-span-6">
-          <p data-reveal className="text-lead max-w-[38ch] text-text-dim">
+          {/* Not animated: this is the LCP element on mobile, so it paints immediately. */}
+          <p className="text-lead max-w-[38ch] text-text-dim">
             {profile.summary}
           </p>
           <div data-reveal className="mt-8 flex flex-wrap items-center gap-3">
@@ -121,7 +118,7 @@ export function Hero() {
       </div>
 
       {/* Bottom rail: scroll cue + stack marquee */}
-      <div data-reveal className="relative border-y border-line">
+      <div className="relative border-y border-line">
         <div className="flex items-center">
           <a
             href="#about"

@@ -102,7 +102,7 @@ export function CaseStudy({ project, next, total }: Props) {
                 <MaskLines lines={[project.name]} />
               </h1>
             </ViewTransition>
-            <p data-reveal className="text-lead mt-8 max-w-[60ch] text-text-dim">
+            <p className="text-lead mt-8 max-w-[60ch] text-text-dim">
               {project.summary}
             </p>
           </div>
