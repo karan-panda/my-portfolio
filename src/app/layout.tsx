@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Intro } from "@/components/motion/Intro";
 import { IntroScript } from "@/components/motion/IntroScript";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
+import { Cursor } from "@/components/motion/Cursor";
 import "./globals.css";
 
 const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", display: "swap" });
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <div className="grain" aria-hidden="true" />
         <Intro />
         <SmoothScroll />
+        <Cursor />
         <SiteHeader />
         <ViewTransition default="page">
           <main id="main" className="relative z-10">

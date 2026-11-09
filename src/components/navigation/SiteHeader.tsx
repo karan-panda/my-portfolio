@@ -8,18 +8,23 @@ import { navItems, profile } from "@/data/profile";
 import { Monogram } from "@/components/ui/Monogram";
 import { ease } from "@/lib/motion";
 import { cn } from "@/lib/cn";
+import { useActiveSection } from "./useActiveSection";
 
 /**
  * Fixed header. Hides while scrolling down, returns on scroll up.
  * Mobile: full-screen menu (Motion presence), focus trapped by `inert` on
  * the page behind it, Escape closes it.
  */
+const SECTION_IDS = ["about", "work", "capabilities", "experience", "impact", "recognition", "contact"];
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const lastY = useRef(0);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  // Observe every home section so in-between sections (impact, capabilities…) clear the indicator.
+  const active = useActiveSection(SECTION_IDS);
 
   useEffect(() => {
     let raf = 0;
@@ -89,7 +94,21 @@ export function SiteHeader() {
         <ul className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (
             <li key={item.href}>
-              <a href={item.href} className="link-underline text-label py-2 text-text-dim hover:text-text">
+              <a
+                href={item.href}
+                aria-current={active === item.href.replace("/#", "") ? "location" : undefined}
+                className={cn(
+                  "link-underline text-label relative py-2 transition-colors hover:text-text",
+                  active === item.href.replace("/#", "") ? "text-text" : "text-text-dim",
+                )}
+              >
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "absolute top-1/2 -left-3 size-1 -translate-y-1/2 rounded-full bg-accent transition-transform duration-500",
+                    active === item.href.replace("/#", "") ? "scale-100" : "scale-0",
+                  )}
+                />
                 {item.label}
               </a>
             </li>

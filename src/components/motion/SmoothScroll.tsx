@@ -14,6 +14,8 @@ import { isFinePointer, prefersReducedMotion } from "@/hooks/usePrefersReducedMo
 export function SmoothScroll() {
   useEffect(() => {
     document.documentElement.dataset.motion = "ready";
+    // Web fonts can shift layout after triggers are measured; re-measure once loaded.
+    document.fonts?.ready.then(() => ScrollTrigger.refresh());
     if (prefersReducedMotion() || !isFinePointer()) return;
 
     const lenis = new Lenis({ lerp: 0.11, anchors: { offset: -72 }, autoRaf: false });
