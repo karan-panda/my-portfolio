@@ -55,7 +55,7 @@ export function Experience() {
                         return (
                           <Link
                             key={slug}
-                            href={`/work/${slug}`}
+                            href={`/work/${slug}`} prefetch
                             className="inline-flex min-h-9 items-center rounded-full border border-line px-3 font-mono text-[0.72rem] text-text-dim transition-colors hover:border-accent hover:text-accent"
                           >
                             {p.shortName}

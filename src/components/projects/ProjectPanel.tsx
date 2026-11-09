@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/types/content";
 import { ProjectDiagram } from "@/components/diagrams/ProjectDiagram";
@@ -18,11 +19,13 @@ export function ProjectPanel({ project, total }: { project: Project; total: numb
         </p>
 
         <p className="text-label mt-8 text-signal">{project.category}</p>
-        <h3 id={`p-${project.slug}`} className="text-title mt-4 text-[clamp(1.8rem,3.2vw,3rem)]">
-          <Link href={href} className="link-underline">
-            {project.name}
-          </Link>
-        </h3>
+        <ViewTransition name={`project-title-${project.slug}`} share="morph" default="none">
+          <h3 id={`p-${project.slug}`} className="text-title mt-4 text-[clamp(1.8rem,3.2vw,3rem)]">
+            <Link href={href} prefetch className="link-underline">
+              {project.name}
+            </Link>
+          </h3>
+        </ViewTransition>
         <p className="mt-5 text-text-dim">{project.problem}</p>
         <p className="text-label mt-5 text-muted">
           <span className="text-text-dim">My role —</span> {project.role}
@@ -46,6 +49,7 @@ export function ProjectPanel({ project, total }: { project: Project; total: numb
 
         <Link
           href={href}
+          prefetch
           className="group text-label mt-auto inline-flex min-h-12 items-center gap-3 pt-10 text-text hover:text-accent"
         >
           Read case study

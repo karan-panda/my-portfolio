@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { ViewTransition } from "react";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { profile } from "@/data/profile";
 import { SiteHeader } from "@/components/navigation/SiteHeader";
@@ -42,9 +43,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Intro />
         <SmoothScroll />
         <SiteHeader />
-        <main id="main" className="relative z-10">
-          {children}
-        </main>
+        <ViewTransition default="page">
+          <main id="main" className="relative z-10">
+            {children}
+          </main>
+        </ViewTransition>
         <SiteFooter />
       </body>
     </html>

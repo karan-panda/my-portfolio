@@ -32,7 +32,7 @@ export function Impact() {
               </p>
               <p className="mt-4 text-sm text-text-dim">{m.context}</p>
               {p && (
-                <Link href={`/work/${p.slug}`} className="text-label link-underline mt-auto self-start pt-8 text-signal">
+                <Link href={`/work/${p.slug}`} prefetch className="text-label link-underline mt-auto self-start pt-8 text-signal">
                   {p.shortName} →
                 </Link>
               )}
