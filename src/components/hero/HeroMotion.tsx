@@ -26,8 +26,9 @@ export function HeroMotion({ children, className }: { children: ReactNode; class
         return;
       }
       const masked = items.filter((el) => el.parentElement?.classList.contains("mask-line"));
-      gsap.set(masked, { autoAlpha: 1, yPercent: 110 });
-      gsap.set(items.filter((el) => !masked.includes(el)), { autoAlpha: 0, y: 20 });
+      const plain = items.filter((el) => !masked.includes(el));
+      if (masked.length) gsap.set(masked, { autoAlpha: 1, yPercent: 110 });
+      if (plain.length) gsap.set(plain, { autoAlpha: 0, y: 20 });
       gsap.set("[data-schematic-part]", { autoAlpha: 0, scale: 0.92, transformOrigin: "50% 50%" });
     },
     { scope: ref },

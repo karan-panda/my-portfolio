@@ -339,3 +339,64 @@ html[data-intro][data-motion="ready"] [data-reveal] {
     animation: none !important;
   }
 }
+
+/* ── Diagrams ─────────────────────────────────────────────────── */
+.flow-dash {
+  stroke-dasharray: 4 10;
+  animation: flow 1.6s linear infinite;
+}
+@keyframes flow {
+  to { stroke-dashoffset: -28; }
+}
+.dr-standby { opacity: 0.6; }
+.health-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: health 2.4s var(--ease-out) infinite;
+}
+@keyframes health {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+/* One-shot animations wait for the frame to enter view (.in-view set by DiagramInView) */
+.bar-grow {
+  transform-box: fill-box;
+  transform-origin: left center;
+}
+.diagram-frame.is-armed .bar-grow { transform: scaleX(0); }
+.diagram-frame.in-view .bar-grow {
+  transform: scaleX(1);
+  transition: transform 1.4s var(--ease-out) 0.2s;
+}
+.diagram-frame.is-armed .dial-grow { stroke-dasharray: var(--dial-from) var(--circ); }
+.diagram-frame.in-view .dial-grow {
+  stroke-dasharray: var(--dial-to) var(--circ);
+  transition: stroke-dasharray 1.6s var(--ease-out) 0.3s;
+}
+.diagram-frame.is-armed .stream-line { opacity: 0; }
+.diagram-frame.in-view .stream-line {
+  animation: stream-in 0.5s var(--ease-out) both;
+}
+@keyframes stream-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.diagram-frame .corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--accent);
+}
+.corner.tl { top: -1px; left: -1px; border-top: 1px solid; border-left: 1px solid; }
+.corner.tr { top: -1px; right: -1px; border-top: 1px solid; border-right: 1px solid; }
+.corner.bl { bottom: -1px; left: -1px; border-bottom: 1px solid; border-left: 1px solid; }
+.corner.br { bottom: -1px; right: -1px; border-bottom: 1px solid; border-right: 1px solid; }
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-dash, .health-pulse { animation: none; }
+}
+
+/* ── Contact ──────────────────────────────────────────────────── */
+.contact-glow {
+  background: radial-gradient(ellipse 60% 70% at 70% 100%, rgb(198 244 50 / 0.08), transparent 70%);
+}

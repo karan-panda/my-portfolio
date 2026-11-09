@@ -33,12 +33,13 @@ export function Reveal({ children, as: Tag = "div", className, delay = 0, start 
       }
       const masked = items.filter((el) => el.parentElement?.classList.contains("mask-line"));
       const plain = items.filter((el) => !masked.includes(el));
-      gsap.set(masked, { autoAlpha: 1, yPercent: 110 });
-      gsap.set(plain, { autoAlpha: 0, y: 24 });
+      if (masked.length) gsap.set(masked, { autoAlpha: 1, yPercent: 110 });
+      if (plain.length) gsap.set(plain, { autoAlpha: 0, y: 24 });
 
       const tl = gsap.timeline({
         delay,
-        scrollTrigger: { trigger: ref.current, start, once: true },
+        // play once, never reverse (avoids `once`, which self-kills mid-refresh)
+        scrollTrigger: { trigger: ref.current, start, toggleActions: "play none none none" },
         defaults: { ease: ease.out, duration: duration.base },
       });
       if (masked.length) tl.to(masked, { yPercent: 0, stagger: stagger.lines, duration: duration.slow }, 0);
