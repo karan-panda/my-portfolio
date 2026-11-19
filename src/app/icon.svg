@@ -1,4 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#0b0b0a"/>
-  <text x="32" y="43" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="600" letter-spacing="-2" fill="#f2efe8">K<tspan fill="#32f438">/</tspan>P</text>
+  <rect width="64" height="64" rx="15" fill="#141412"/>
+  <rect x=".75" y=".75" width="62.5" height="62.5" rx="14.25" fill="none" stroke="#2f2e2a" stroke-width="1.5"/>
+  <!-- K/P mark (same geometry as src/components/ui/Monogram.tsx), viewBox 52x40 scaled into the tile -->
+  <g transform="translate(7 11) scale(0.9615)" fill="none" stroke-width="5.5">
+    <path d="M14.6 18.2 L23.87 35.8" stroke="#f2efe8"/>
+    <path d="M7 27.6 L27.5 2.5" stroke="#32f438"/>
+    <path d="M7 7 V37" stroke="#f2efe8"/>
+    <path d="M34 37 V9.75 H41.25 A7.25 7.25 0 0 1 41.25 24.25 H34" stroke="#f2efe8"/>
+  </g>
 </svg>

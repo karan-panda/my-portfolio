@@ -1,3 +1,5 @@
+import { MarkSvg } from "./MarkSvg";
+
 /**
  * Shared layout for generated social preview images (rendered by next/og).
  * Uses inline styles only — ImageResponse supports a subset of CSS.
@@ -20,9 +22,7 @@ export function OgCard({ eyebrow, title, footer }: { eyebrow: string; title: str
       }}
     >
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{ display: "flex", fontSize: 44, letterSpacing: -2 }}>
-          K<span style={{ color: "#32f438" }}>/</span>P
-        </div>
+        <MarkSvg width={72} />
         <div style={{ display: "flex", fontSize: 22, letterSpacing: 4, color: "#8a877f", textTransform: "uppercase" }}>{eyebrow}</div>
       </div>
       <div style={{ display: "flex", fontSize: 76, lineHeight: 1.02, letterSpacing: -3, maxWidth: 1000 }}>{title}</div>

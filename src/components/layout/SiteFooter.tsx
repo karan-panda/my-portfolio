@@ -14,7 +14,7 @@ export function SiteFooter() {
     <footer id="site-footer" className="relative z-10 border-t border-line">
       <div className="shell flex flex-col gap-8 py-10 md:flex-row md:items-center md:justify-between">
         <div className="flex items-center gap-4">
-          <Monogram className="text-3xl" />
+          <Monogram className="h-8 text-text" />
           <p className="text-label text-muted">
             © <FooterYear /> {profile.name} · {profile.location}
           </p>

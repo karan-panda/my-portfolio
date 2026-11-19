@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { INTRO_EVENT, INTRO_KEY } from "@/lib/motion";
+import { Monogram } from "@/components/ui/Monogram";
 
 function finish() {
   const d = document.documentElement;
@@ -47,9 +48,9 @@ export function Intro() {
   return (
     <div ref={root} className="intro" aria-hidden="true">
       <div className="flex flex-col items-start gap-6">
-        <span className="mask-line font-display text-[clamp(3.5rem,12vw,9rem)] leading-none font-medium tracking-[-0.06em]">
+        <span className="mask-line">
           <span data-intro-mark>
-            K<span className="text-accent">/</span>P
+            <Monogram className="h-[clamp(4rem,11vw,8.5rem)] text-text" />
           </span>
         </span>
         <span className="block h-px w-[min(70vw,28rem)] origin-left bg-line">

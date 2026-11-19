@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { MarkSvg } from "@/components/layout/MarkSvg";
 
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
@@ -12,13 +13,10 @@ export default function AppleIcon() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "#0b0b0a",
-        color: "#f2efe8",
-        fontSize: 84,
-        letterSpacing: -6,
+        background: "#141412",
       }}
     >
-      K<span style={{ color: "#32f438" }}>/</span>P
+      <MarkSvg width={118} />
     </div>,
     size,
   );
