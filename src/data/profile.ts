@@ -29,8 +29,8 @@ export const profile: Profile = {
     github: "https://github.com/karan-panda",
     resume: "/resume/karan-panda-resume.pdf",
   },
-  // Update once a domain is configured (used for canonical URL, sitemap, OG).
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  // Canonical URL, sitemap and Open Graph URLs. NEXT_PUBLIC_SITE_URL overrides it (e.g. for previews).
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://karan-panda.is-a.dev",
 };
 
 export const navItems = [

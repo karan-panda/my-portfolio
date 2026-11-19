@@ -39,7 +39,7 @@ npm run build && npm run start
 ## Deploy (Vercel)
 
 1. Import `karan-panda/my-portfolio` at https://vercel.com/new. The framework (Next.js) is detected automatically, so no build settings are needed.
-2. Add the environment variable **`NEXT_PUBLIC_SITE_URL`** with your final domain, for example `https://karanpanda.dev`, with no trailing slash. It drives canonical URLs, `sitemap.xml`, `robots.txt` and Open Graph URLs. Without it they fall back to `http://localhost:3000`.
+2. Add the environment variable **`NEXT_PUBLIC_SITE_URL`** with your final domain, for example `https://karanpanda.dev`, with no trailing slash. It drives canonical URLs, `sitemap.xml`, `robots.txt` and Open Graph URLs. Without it they fall back to `https://karan-panda.is-a.dev` (set in `src/data/profile.ts`).
 3. Deploy, then add a custom domain in **Settings → Domains** and redeploy, so the build picks up the URL.
 4. Optional: submit `https://<domain>/sitemap.xml` in Google Search Console.
 
